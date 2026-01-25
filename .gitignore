@@ -42,6 +42,20 @@ output/
 
 # Large zip files
 predict.zip
+*.zip
+
+# Generated images (can be regenerated from code)
+*.png
+*.jpg
+tsne_train_*.png
+figure*.png
+fig*.jpg
+test_sample*.jpg
+IDEA.jpg
+
+# Backup files
+*copy.py
+*copy*.py
 
 # OS
 .DS_Store

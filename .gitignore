@@ -63,3 +63,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Claude memo (local only)
+CLAUDE.md

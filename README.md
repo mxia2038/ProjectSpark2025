@@ -13,6 +13,14 @@ This project implements a 6-class image classification model to identify differe
 - Training visualization (loss curves, accuracy metrics)
 - t-SNE feature visualization
 - Confusion matrix analysis
+- **GUI Application** - PyQt5 desktop application with:
+  - Chinese localized interface (反应自动控制系统)
+  - Image selection and simulated camera capture
+  - Real-time stage prediction with confidence display
+  - Probability visualization for all 6 stages
+  - Detection history tracking
+  - Manual correction and data collection
+  - High DPI display support
 
 ## Requirements
 
@@ -26,6 +34,8 @@ pip install -r requirements.txt
 ├── main.py              # Training script
 ├── mymodel.py           # Model architecture
 ├── predict.py           # Inference script
+├── crystal_classifier.py # Model wrapper class
+├── gui_app.py           # PyQt5 GUI application
 ├── confusionmatrix.py   # Confusion matrix visualization
 ├── tsne.py              # t-SNE feature visualization
 ├── accuracy&loss.py     # Training metrics plotting
@@ -53,6 +63,18 @@ Configuration (in `main.py`):
 ```python
 python predict.py
 ```
+
+### GUI Application
+
+```python
+python gui_app.py
+```
+
+Features:
+- **选择图像**: Select an image file for prediction
+- **模拟拍照**: Randomly select an image from the dataset
+- **开始自动模式**: Continuous detection mode (every 2.5 seconds)
+- **手动修正**: Save misclassified images to correct folders for retraining
 
 ## Model Architecture
 

@@ -16,7 +16,7 @@ class Config:
     batch_size = 16
     num_epochs = 30
     lr = 3e-4
-    num_classes = 6  # 4个阶段
+    num_classes = 6  # 6个阶段
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_save_path = "C:/Users/Admin/PycharmProjects/2024/output/crystal_stage_model.pth"
     results_save_path = "C:/Users/Admin/PycharmProjects/2024/output/training_results.npz"  # 保存训练结果

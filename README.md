@@ -1,105 +1,104 @@
-# Crystal Stage Classification
+# 晶体生长阶段分类
 
-A deep learning model for classifying crystal growth stages using ResNet34.
+基于 ResNet34 的晶体生长阶段深度学习分类模型。
 
-## Overview
+## 项目概述
 
-This project implements a 6-class image classification model to identify different stages of crystal formation. The model uses transfer learning with a pre-trained ResNet34 backbone.
+本项目实现了一个 6 类图像分类模型，用于识别晶体生长的不同阶段（0-5）。模型采用 ImageNet 预训练的 ResNet34 进行迁移学习。
 
-## Features
+## 功能特性
 
-- ResNet34-based classification with custom fully connected layers
-- Data augmentation (random flip, rotation, color jitter)
-- Training visualization (loss curves, accuracy metrics)
-- t-SNE feature visualization
-- Confusion matrix analysis
-- **GUI Application** - PyQt5 desktop application with:
-  - Chinese localized interface (反应自动控制系统)
-  - Image selection and simulated camera capture
-  - Real-time stage prediction with confidence display
-  - Probability visualization for all 6 stages
-  - Detection history tracking
-  - Manual correction and data collection
-  - High DPI display support
+- 基于 ResNet34 的分类模型，自定义全连接层
+- 数据增强（随机翻转、旋转、颜色抖动）
+- 训练可视化（损失曲线、准确率指标）
+- t-SNE 特征降维可视化
+- 混淆矩阵分析
+- **GUI 桌面应用** - 基于 PyQt5 的桌面应用：
+  - 中文界面（反应自动控制系统）
+  - 图像选择与模拟拍照
+  - 实时阶段预测与置信度显示
+  - 6 个阶段的概率可视化
+  - 检测历史记录
+  - 手动修正与数据收集
+  - 高 DPI 显示支持
 
-## Requirements
+## 环境配置
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Project Structure
+## 项目结构
 
 ```
-├── main.py              # Training script
-├── mymodel.py           # Model architecture
-├── predict.py           # Inference script
-├── crystal_classifier.py # Model wrapper class
-├── gui_app.py           # PyQt5 GUI application
-├── confusionmatrix.py   # Confusion matrix visualization
-├── tsne.py              # t-SNE feature visualization
-├── accuracy&loss.py     # Training metrics plotting
-├── plot_results.py      # Results visualization
-├── var_pred.py          # Variable prediction analysis
-└── requirements.txt     # Dependencies
+├── main.py              # 训练主程序（含模型架构定义）
+├── predict.py           # 单张图像预测
+├── crystal_classifier.py # 模型封装类
+├── gui_app.py           # PyQt5 GUI 应用
+├── confusionmatrix.py   # 混淆矩阵可视化
+├── tsne.py              # t-SNE 特征降维可视化
+├── accuracy&loss.py     # 训练指标绘图
+├── plot_results.py      # 结果可视化
+├── var_pred.py          # 多元线性回归分析
+└── requirements.txt     # 依赖列表
 ```
 
-## Usage
+## 使用方法
 
-### Training
+### 模型训练
 
 ```python
 python main.py
 ```
 
-Configuration (in `main.py`):
+训练配置（在 `main.py` 中）：
 - `batch_size`: 16
 - `num_epochs`: 30
 - `lr`: 3e-4
 - `num_classes`: 6
 
-### Prediction
+### 单张预测
 
 ```python
 python predict.py
 ```
 
-### GUI Application
+### GUI 应用
 
 ```python
 python gui_app.py
 ```
 
-Features:
-- **选择图像**: Select an image file for prediction
-- **模拟拍照**: Randomly select an image from the dataset
-- **开始自动模式**: Continuous detection mode (every 2.5 seconds)
-- **手动修正**: Save misclassified images to correct folders for retraining
+功能说明：
+- **选择图像**：选择本地图像文件进行预测
+- **模拟拍照**：从数据集中随机选取图像
+- **开始自动模式**：连续检测模式（每 2.5 秒）
+- **手动修正**：将误分类图像保存到正确的文件夹，用于后续重新训练
 
-## Model Architecture
+## 模型架构
 
-- **Backbone**: ResNet34 (ImageNet pre-trained)
-- **Input size**: 224 x 224
-- **Output**: 6 classes (stages 0-5)
-- **Optimizer**: AdamW
-- **Scheduler**: OneCycleLR
-- **Loss**: CrossEntropyLoss with label smoothing
+- **主干网络**：ResNet34（ImageNet 预训练）
+- **输入尺寸**：224 × 224
+- **输出**：6 类（阶段 0-5）
+- **优化器**：AdamW（weight_decay=1e-4）
+- **学习率调度**：OneCycleLR
+- **损失函数**：CrossEntropyLoss（label_smoothing=0.1）
 
-## Dataset
+## 数据集
 
-Prepare your dataset in the following structure:
+请按以下结构组织数据集：
 
 ```
 dataset/
 └── train/
-    ├── 0/    # Stage 0 images
-    ├── 1/    # Stage 1 images
-    ├── 2/    # Stage 2 images
-    ├── 3/    # Stage 3 images
-    ├── 4/    # Stage 4 images
-    └── 5/    # Stage 5 images
+    ├── 0/    # 阶段 0 图像
+    ├── 1/    # 阶段 1 图像
+    ├── 2/    # 阶段 2 图像
+    ├── 3/    # 阶段 3 图像
+    ├── 4/    # 阶段 4 图像
+    └── 5/    # 阶段 5 图像
 ```
 
-## License
+## 许可证
 
 MIT License
